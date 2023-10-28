@@ -25,7 +25,7 @@ const tokens = {
 oAuth2Client.setCredentials(tokens);
 
 // Type for transaction object
-interface Transaction {
+export interface Transaction {
   date: Date;
   narration: string;
   ref_no: string;
@@ -37,7 +37,7 @@ interface Transaction {
 
 export const fetchAttachments = async () => {
   try {
-    console.log("fetch attachments running");
+    console.log("Fetching attachments...");
     // Store the statements in 'statement' directory, create if does not exist
     const statementsFolder = "statements";
     if (!existsSync(statementsFolder)) {
@@ -176,7 +176,7 @@ export const parsePDFs = () => {
     // When the python script finishes executing
     pythonProcess.on("close", (code) => {
       if (code === 0) {
-        console.log("Python script executed successfully.");
+        console.log("Attachments parsed...");
       } else {
         console.error(`Python script exited with code ${code}`);
       }

@@ -2,10 +2,10 @@
 import express, { Request, Response } from "express";
 
 /* FUNCTIONS */
-import { fetchAttachments, parsePDFs } from "./lib/utils";
+import { fetchAttachments } from "./lib/utils";
 
 /* ROUTES */
-import email_routes from "./routes/emails";
+import transaction_routes from "./routes/transactions";
 
 /* CONFIG */
 const PORT = process.env.PORT || 4000;
@@ -23,11 +23,18 @@ try {
 app.use(express.json());
 
 /* APP */
+
+app.get("/", (_: Request, res: Response) => {
+  res.status(200).json({
+    get_all_transactions: "/api/transactions",
+  });
+});
+
 app.get("/api", (_: Request, res: Response) => {
   res.status(200).json("Hello!");
 });
 
-app.use("/api/emails", email_routes);
+app.use("/api/transactions", transaction_routes);
 
 app.get("*", (_: Request, res: Response) => {
   res.status(404).json({
