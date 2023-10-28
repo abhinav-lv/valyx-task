@@ -23,19 +23,25 @@ try {
 app.use(express.json());
 
 /* APP */
-
+// Root route
 app.get("/", (_: Request, res: Response) => {
   res.status(200).json({
     get_all_transactions: "/api/transactions",
+    get_transactions_within_date_range:
+      "/api/transactions?start_date=DD-MM-YYYY&end_date=DD-MM-YYYY",
+    get_balance: "/api/transactions/balance?date=DD-MM-YYYY",
   });
 });
 
+// API route
 app.get("/api", (_: Request, res: Response) => {
   res.status(200).json("Hello!");
 });
 
+// Transactions route
 app.use("/api/transactions", transaction_routes);
 
+// Fallback
 app.get("*", (_: Request, res: Response) => {
   res.status(404).json({
     status_code: 404,

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { readFileSync } from "fs";
 import path from "path";
+import { readFileSync } from "fs";
 import { Transaction } from "../lib/utils";
 
 export const get_all_transactions = async (req: Request, res: Response) => {

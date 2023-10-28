@@ -2,6 +2,7 @@ import path from "path";
 import { google } from "googleapis";
 import { existsSync, mkdirSync, writeFileSync } from "fs";
 
+// To run python script
 import { spawn } from "child_process";
 
 // Set up OAuth2 client
@@ -35,6 +36,7 @@ export interface Transaction {
   balance: number;
 }
 
+// Fetch Attachments
 export const fetchAttachments = async () => {
   try {
     console.log("Fetching attachments...");
@@ -95,6 +97,7 @@ export const fetchAttachments = async () => {
   }
 };
 
+// Parse PDFS for transactions
 export const parsePDFs = () => {
   const pythonScript = "lib/plumber.py";
   try {
